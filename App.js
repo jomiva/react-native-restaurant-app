@@ -1,23 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Navigation from './app/navigations/Navigation';
+// eslint-disable-next-line no-unused-vars
+import { firebaseApp } from './app/utils/firebase';
 
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start workings on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
