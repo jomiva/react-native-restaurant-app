@@ -28,6 +28,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'object-curly-newline': 'off',
     'global-require': 'off',
+    'react/jsx-wrap-multilines': 'off',
+    'no-useless-escape': 'off',
+    'operator-linebreak': 'off',
   },
   globals: {
     fetch: false,
