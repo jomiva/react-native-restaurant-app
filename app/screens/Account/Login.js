@@ -20,8 +20,8 @@ const Login = () => {
         <CreateAccount />
       </View>
       <Divider style={styles.divider} />
-      <View>
-        <LoginFacebook />
+      <View style={styles.viewContainer}>
+        <LoginFacebook toastRef={toastRef} />
       </View>
       <Toast
         useNativeDriver={true}
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     backgroundColor: '#00a680',
-    margin: 15,
+    marginTop: 15,
+    marginBottom: 15,
   },
 });
