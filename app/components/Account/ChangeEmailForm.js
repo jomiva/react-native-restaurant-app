@@ -57,7 +57,7 @@ const ChangeEmailForm = ({
     <View style={styles.view}>
       <Input
         defaultValue={email || ''}
-        placeholder="Nombre y Apellidos"
+        placeholder="Email"
         containerStyle={styles.input}
         rightIcon={{
           type: 'material-community',

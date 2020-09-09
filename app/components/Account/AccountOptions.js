@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { map } from 'lodash';
 import Modal from '../Modal';
 import ChangeDisplayNameForm from './ChangeDisplayNameForm';
 import ChangeEmailForm from './ChangeEmailForm';
+import ChangePasswordForm from './ChangePasswordForm';
 
 const AccountOptions = ({ userInfo, toastRef, setReloadUserInfo }) => {
   const { displayName, email } = userInfo;
@@ -39,7 +40,13 @@ const AccountOptions = ({ userInfo, toastRef, setReloadUserInfo }) => {
 
       case 'password':
         setIsVisible(true);
-        return setRenderComponent(<Text>Cambiando password</Text>);
+        return setRenderComponent(
+          <ChangePasswordForm
+            setIsVisible={setIsVisible}
+            toastRef={toastRef}
+            setReloadUserInfo={setReloadUserInfo}
+          />
+        );
 
       default:
         return setRenderComponent(null);
