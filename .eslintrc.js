@@ -7,6 +7,7 @@ module.exports = {
     'react-native/react-native': true,
   },
   rules: {
+    'no-unused-vars': 'warn',
     'no-use-before-define': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',

@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -21,12 +23,17 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
+      "package":"com.valerajosesoto.tenedores",
       "permissions": [
         "CAMERA_ROLL",
         "READ_EXTERMAL_STORAGE",
-        "WRITE_EXTERMAL_STORAGE"
+        "WRITE_EXTERMAL_STORAGE",
+        "LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
       ]
     },
     "description": "probando"
   }
 }
+
