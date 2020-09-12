@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,7 +21,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package":"com.valerajosesoto.tenedores",
+      "package": "com.valerajosesoto.tenedores",
       "permissions": [
         "CAMERA_ROLL",
         "READ_EXTERMAL_STORAGE",
@@ -33,7 +31,7 @@
         "ACCESS_FINE_LOCATION"
       ]
     },
+
     "description": "probando"
   }
 }
-
