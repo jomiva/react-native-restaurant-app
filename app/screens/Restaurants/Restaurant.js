@@ -7,6 +7,7 @@ import { firebaseApp } from '../../utils/firebase';
 import ImagesCarousel from '../../components/ImagesCarousel';
 import RatingRestaurant from '../../components/Restaurants/RatingRestaurant';
 import RestaurantInfo from '../../components/Restaurants/RestaurantInfo';
+import ListReviews from '../../components/Restaurants/ListReviews';
 
 const db = firebase.firestore(firebaseApp);
 const screenWidth = Dimensions.get('window').width;
@@ -48,6 +49,11 @@ const Restaurant = ({ navigation, route }) => {
         location={restaurant.location}
         name={restaurant.name}
         address={restaurant.address}
+      />
+      <ListReviews
+        navigation={navigation}
+        idRestaurant={restaurant.id}
+        setRating={setRating}
       />
     </ScrollView>
   );

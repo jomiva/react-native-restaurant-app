@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import openMap from 'react-native-open-maps';
 
@@ -32,9 +31,3 @@ const MapRestaurant = ({ location, name, height }) => {
 };
 
 export default MapRestaurant;
-
-const styles = StyleSheet.create({
-  viewContainer: {
-    marginBottom: 5,
-  },
-});
