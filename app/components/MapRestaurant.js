@@ -35,6 +35,6 @@ export default MapRestaurant;
 
 const styles = StyleSheet.create({
   viewContainer: {
-    marginBottom: 2,
+    marginBottom: 3,
   },
 });
