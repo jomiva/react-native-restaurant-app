@@ -33,4 +33,8 @@ const MapRestaurant = ({ location, name, height }) => {
 
 export default MapRestaurant;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  viewContainer: {
+    marginBottom: 2,
+  },
+});
