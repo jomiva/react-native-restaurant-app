@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button, Avatar, Rating } from 'react-native-elements';
+import { map } from 'lodash';
 import firebase from 'firebase/app';
 import { firebaseApp } from '../../utils/firebase';
+import 'firebase/firestore';
 
 const db = firebase.firestore(firebaseApp);
 
-const ListReviews = ({ navigation, idRestaurant, setRating }) => {
+const ListReviews = ({ navigation, idRestaurant }) => {
   const [userLogged, setUserLogged] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  console.log(reviews);
 
   firebase.auth().onAuthStateChanged((user) => {
     user ? setUserLogged(true) : setUserLogged(false);
   });
+
+  useEffect(() => {
+    db.collection('reviews')
+      .where('idRestaurant', '==', idRestaurant)
+      .get()
+      .then((response) => {
+        const resultReviews = [];
+        response.forEach((doc) => {
+          const data = doc.data();
+          resultReviews.push(data);
+        });
+        setReviews(resultReviews);
+      });
+  }, [idRestaurant]);
 
   return (
     <View>
@@ -51,6 +69,42 @@ const ListReviews = ({ navigation, idRestaurant, setRating }) => {
           </Text>
         </View>
       )}
+      {map(reviews, (review, index) => (
+        <Review key={index} reviewProp={review} />
+      ))}
+    </View>
+  );
+};
+
+const Review = ({ reviewProp }) => {
+  const { title, review, rating, createAt, avatarUser } = reviewProp;
+  const createReview = new Date(createAt.seconds * 1000);
+
+  return (
+    <View style={styles.viewReview}>
+      <View style={styles.viewImageAvatar}>
+        <Avatar
+          size="large"
+          rounded
+          containerStyle={styles.imageAvatarUser}
+          source={
+            avatarUser
+              ? { uri: avatarUser }
+              : require('../../../assets/img/avatar-default.jpg')
+          }
+        />
+      </View>
+      <View style={styles.viewInfo}>
+        <Text style={styles.reviewTitle}>{title}</Text>
+        <Text style={styles.reviewText}>{review}</Text>
+        <Rating imageSize={15} startingValue={rating} readonly />
+        <Text style={styles.reviewDate}>
+          {createReview.getDate()}/{createReview.getMonth() - 1}/
+          {createReview.getFullYear()} - {createReview.getHours()}:
+          {createReview.getMinutes() < 10 ? '0' : ''}
+          {createReview.getMinutes()}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -75,5 +129,38 @@ const styles = StyleSheet.create({
   },
   btnTitleAddReview: {
     color: '#00a680',
+  },
+  imageAvatarUser: {
+    width: 50,
+    height: 50,
+  },
+  viewReview: {
+    flexDirection: 'row',
+    padding: 10,
+    paddingBottom: 20,
+    borderBottomColor: '#e3e3e3',
+    borderBottomWidth: 1,
+  },
+  viewImageAvatar: {
+    marginRight: 15,
+  },
+  viewInfo: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  reviewTitle: {
+    fontWeight: 'bold',
+  },
+  reviewText: {
+    paddingTop: 2,
+    color: '#e3e3e3',
+    marginBottom: 5,
+  },
+  reviewDate: {
+    marginTop: 5,
+    color: '#e3e3e3',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
   },
 });
